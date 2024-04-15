@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "29c63e3d-d4d8-40c1-9f3b-f9f9b6b2181d",
+		"name": "Routes du serveur Node.js",
+		"description": "Collection des routes pour le serveur Node.js",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Générer 100 utilisateurs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3002/generer_utilisateurs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"generer_utilisateurs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "État de la base de données",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3002/db_status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"db_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insérer un utilisateur",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Nom de l'utilisateur\",\n    \"age\": 25,\n    \"email\": \"utilisateur@example.com\",\n    \"createdAt\": \"2023-04-14T12:00:00.000Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3002/utilisateurs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"utilisateurs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtenir les utilisateurs de plus de 30 ans",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3002/utilisateurs/majeurs_de_30",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"utilisateurs",
+						"majeurs_de_30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mettre à jour l'âge de tous les utilisateurs",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3002/utilisateurs/actualiser_age",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"utilisateurs",
+						"actualiser_age"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer un utilisateur spécifique",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3002/utilisateurs/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"utilisateurs",
+						":id"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

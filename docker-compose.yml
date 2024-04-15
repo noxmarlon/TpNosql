@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  mongo-rs0-1:
+    image: "mongo"
+    build: ./mongo-rs0-1
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-rs0-1/data:/data/db
+    depends_on:
+      - mongo-rs0-2
+      - mongo-rs0-3
+    environment:
+      - HOST=0.0.0.0
+
+  mongo-rs0-2:
+    image: "mongo"
+    command: mongod --replSet rs0
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./mongo-rs0-2/data:/data/db
+    environment:
+      - HOST=0.0.0.0
+
+  mongo-rs0-3:
+    image: "mongo"
+    command: mongod --replSet rs0
+    ports:
+      - "27019:27017"
+    volumes:
+      - ./mongo-rs0-3/data:/data/db
+    environment:
+      - HOST=0.0.0.0
+
+  setup-rs:
+    image: "setup-rs"
+    build: ./setup
+    depends_on:
+      - mongo-rs0-1
+    environment:
+      - HOST=0.0.0.0
+
+  adminmongo:
+    image: "mrvautin/adminmongo"
+    ports:
+      - "1234:1234"
+    environment:
+      - HOST=0.0.0.0
+
+  nodejs-server:
+    build: ./server
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongo-rs0-1
+      - mongo-rs0-2
+      - mongo-rs0-3
+    environment:
+      - HOST=0.0.0.0
